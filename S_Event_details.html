@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;600&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#607AFB",
+        "background-light": "#f5f6f8",
+        "background-dark": "#0f1323"
+      },
+      fontFamily: { display: "Manrope" }
+    }
+  }
+}
+</script>
+
+<style type="text/tailwindcss">
+.glass {
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,.3);
+}
+.dark .glass {
+  background: rgba(17,22,33,.8);
+  border: 1px solid rgba(255,255,255,.1);
+}
+</style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-lg px-4 py-3 border-b border-black/5 dark:border-white/10">
+  <button class="size-10 flex items-center justify-center rounded-full bg-background-light dark:bg-white/10">
+    <span class="material-symbols-outlined">arrow_back_ios_new</span>
+  </button>
+
+  <h2 class="text-sm sm:text-base font-bold flex-1 text-center">Event Details</h2>
+
+  <div class="flex gap-2">
+    <button class="size-10 flex items-center justify-center rounded-full bg-background-light dark:bg-white/10">
+      <span class="material-symbols-outlined text-primary">favorite</span>
+    </button>
+    <button class="size-10 flex items-center justify-center rounded-full bg-background-light dark:bg-white/10">
+      <span class="material-symbols-outlined">share</span>
+    </button>
+  </div>
+</nav>
+
+<main class="pt-16 pb-32 max-w-7xl mx-auto">
+
+<!-- HERO IMAGE -->
+<div class="relative w-full h-[220px] sm:h-[280px] md:h-[340px] lg:h-[420px] overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://media.istockphoto.com/id/501062623/photo/speaker-presenting-at-business-seminar.jpg?s=612x612&w=0&k=20&c=KzvyRuTIut1NuHvNcHjjBAuAzl2gDp3wOHDN_VrqgZU=')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+
+<!-- EVENT CARD -->
+<div class="px-4 -mt-32 relative z-10">
+  <div class="glass p-4 sm:p-6 md:p-8 rounded-3xl shadow-xl">
+
+    <span class="px-2 py-1 bg-primary/10 text-primary font-bold text-xs rounded-lg">
+      Tech Conference
+    </span>
+
+    <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold mt-2">
+      Future of AI & SaaS Entrepreneurship
+    </h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+
+      <div class="flex items-center gap-3">
+        <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary">calendar_today</span>
+        </div>
+        <div>
+          <p class="font-bold text-sm">24 Oct 2024</p>
+          <p class="text-xs opacity-60">10AM - 5PM</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary">location_on</span>
+        </div>
+        <div>
+          <p class="font-bold text-sm">Innovation Hub</p>
+          <p class="text-xs opacity-60">San Francisco</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="w-full h-14 bg-primary text-white rounded-2xl font-bold shadow-lg hover:scale-[1.02] transition">
+      Register Now
+    </button>
+
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="grid grid-cols-3 gap-4 text-center px-4 mt-8 py-4 bg-white/50 dark:bg-white/5 rounded-2xl mx-4">
+  <div>
+    <p class="text-xl font-extrabold text-primary">500+</p>
+    <p class="text-[10px] opacity-60 font-bold">Attendees</p>
+  </div>
+  <div>
+    <p class="text-xl font-extrabold text-primary">12</p>
+    <p class="text-[10px] opacity-60 font-bold">Speakers</p>
+  </div>
+  <div>
+    <p class="text-xl font-extrabold text-primary">4.9</p>
+    <p class="text-[10px] opacity-60 font-bold">Rating</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="mt-8 px-4">
+  <h2 class="text-xl font-bold">About the Event</h2>
+  <p class="text-sm opacity-70 mt-2">
+    Join industry leaders and student founders for an immersive experience into AI and SaaS innovation.
+  </p>
+</section>
+
+<!-- SPEAKERS -->
+<section class="mt-8">
+  <h2 class="px-4 text-xl font-bold">Key Speakers</h2>
+  <div class="flex gap-4 overflow-x-auto px-4 mt-4 snap-x snap-mandatory">
+
+    <div class="min-w-[90px] flex flex-col items-center snap-center">
+      <img class="size-16 rounded-2xl object-cover border-2 border-primary" src="https://randomuser.me/api/portraits/women/44.jpg">
+      <p class="text-xs font-bold mt-1">Sarah Chen</p>
+      <p class="text-[9px] opacity-60">CTO</p>
+    </div>
+
+    <div class="min-w-[90px] flex flex-col items-center snap-center">
+      <img class="size-16 rounded-2xl object-cover" src="https://randomuser.me/api/portraits/men/46.jpg">
+      <p class="text-xs font-bold mt-1">David Miller</p>
+      <p class="text-[9px] opacity-60">Founder</p>
+    </div>
+
+    <div class="min-w-[90px] flex flex-col items-center snap-center">
+      <img class="size-16 rounded-2xl object-cover" src="https://randomuser.me/api/portraits/women/68.jpg">
+      <p class="text-xs font-bold mt-1">Aisha Khan</p>
+      <p class="text-[9px] opacity-60">VC Partner</p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- BOTTOM BAR -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-black/5 dark:border-white/10 px-4 sm:px-6 py-3 sm:py-4 z-50 flex items-center gap-6">
+
+  <div>
+    <p class="text-[10px] opacity-60 font-bold">EARLY BIRD</p>
+    <div class="flex items-center gap-2">
+      <span class="text-2xl font-black text-primary">$49</span>
+      <span class="text-xs opacity-40 line-through">$79</span>
+    </div>
+  </div>
+
+  <button class="flex-1 h-12 bg-primary text-white rounded-2xl font-bold shadow-lg hover:scale-[1.02] transition">
+    Claim Your Spot
+  </button>
+
+</div>
+
+</body>
+</html>

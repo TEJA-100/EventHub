@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Manrope"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}}}};</script>
+<style>
+        .glass-navbar {
+            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .dark .glass-navbar {
+            background-color: rgba(17, 22, 33, 0.7);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #2566e9 0%, #7c3aed 100%);
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white transition-colors duration-300">
+<!-- TopAppBar / Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass-navbar border-b border-gray-200/20 px-4 py-3">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    
+    <!-- Logo + Title -->
+    <div class="flex items-center gap-1">
+      <img src="assests/Logo.png" alt="EventHub Logo" class="w-9 h-9 rounded-lg object-contain">
+      <h2 class="text-[#0A1F44] dark:text-white text-xl font-extrabold tracking-tight">
+        EventHub
+      </h2>
+    </div>
+
+    <!-- Login Button (optional) -->
+    <!--
+    <button class="bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+      <a href="Auth.html">LOGIN</a>
+    </button>
+    -->
+
+  </div>
+</nav>
+
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative px-4 py-12 @container">
+<div class="hero-gradient rounded-xl p-8 flex flex-col items-center justify-center text-center gap-8 min-h-[520px] shadow-2xl overflow-hidden relative" data-alt="vibrant blue to purple gradient abstract background">
+<!-- Floating Decorative Elements -->
+<div class="absolute top-10 left-10 opacity-20 floating">
+<span class="material-symbols-outlined text-6xl text-white">confirmation_number</span>
+</div>
+<div class="absolute bottom-20 right-10 opacity-20 floating" style="animation-delay: 2s;">
+<span class="material-symbols-outlined text-6xl text-white">insights</span>
+</div>
+<div class="absolute top-1/2 left-1/4 opacity-10 floating" style="animation-delay: 1s;">
+<span class="material-symbols-outlined text-4xl text-white">calendar_month</span>
+</div>
+<div class="relative z-10 max-w-2xl flex flex-col gap-6">
+<h1 class="text-white text-4xl @[480px]:text-6xl font-extrabold leading-[1.1] tracking-tight">
+                        Plan • Publish • Participate
+                    </h1>
+<p class="text-white/90 text-base @[480px]:text-lg font-medium leading-relaxed max-w-lg mx-auto">
+    Your all-in-one platform to design, launch, and engage in powerful events effortlessly.
+                    </p>
+<div class="flex flex-col @[480px]:flex-row gap-4 justify-center mt-4">
+<button class="bg-white text-primary px-8 py-4 rounded-full text-base font-extrabold shadow-xl hover:bg-gray-50 transition-colors">
+                            <a href="Login.html">Login</a>
+                        </button>
+<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-white/20 transition-colors">
+                        <a href="Signup.Html">SignUp</a>
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="px-4 py-4">
+<div class="flex flex-wrap gap-4">
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 shadow-sm">
+<p class="text-[#636f88] dark:text-gray-400 text-sm font-medium">Universities</p>
+<p class="text-primary tracking-tight text-3xl font-extrabold">50+</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 shadow-sm">
+<p class="text-[#636f88] dark:text-gray-400 text-sm font-medium">Active Users</p>
+<p class="text-primary tracking-tight text-3xl font-extrabold">10k+</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-800 shadow-sm">
+<p class="text-[#636f88] dark:text-gray-400 text-sm font-medium">Events Hosted</p>
+<p class="text-primary tracking-tight text-3xl font-extrabold">500+</p>
+</div>
+</div>
+</section>
+<!-- Section Header -->
+<section class="px-4 pt-10 pb-4">
+<div class="flex flex-col gap-2">
+<h2 class="text-primary text-sm font-extrabold uppercase tracking-widest">Platform Scope</h2>
+<h3 class="text-[#111318] dark:text-white text-3xl font-extrabold leading-tight">Built for Everyone</h3>
+</div>
+</section>
+<!-- Feature Section -->
+<section class="px-4 py-4 pb-20 @container">
+<div class="grid grid-cols-1 @[640px]:grid-cols-3 gap-6">
+<!-- Students -->
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark/50 p-6 shadow-lg shadow-black/5 hover:border-primary/50 transition-colors group">
+<div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex flex-col gap-2">
+<h2 class="text-[#111318] dark:text-white text-xl font-bold">Students</h2>
+<p class="text-[#636f88] dark:text-gray-400 text-sm leading-relaxed">
+                            Discover relevant events, register with one click, and manage your personal campus calendar in one sleek interface.
+                        </p>
+</div>
+</div>
+<!-- Organizers -->
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark/50 p-6 shadow-lg shadow-black/5 hover:border-primary/50 transition-colors group">
+<div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div class="flex flex-col gap-2">
+<h2 class="text-[#111318] dark:text-white text-xl font-bold">Organizers</h2>
+<p class="text-[#636f88] dark:text-gray-400 text-sm leading-relaxed">
+                            A powerful dashboard to track ticket sales, manage RSVPs, and promote your events to the right audience effortlessly.
+                        </p>
+</div>
+</div>
+<!-- Admins -->
+<div class="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-background-dark/50 p-6 shadow-lg shadow-black/5 hover:border-primary/50 transition-colors group">
+<div class="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">shield_person</span>
+</div>
+<div class="flex flex-col gap-2">
+<h2 class="text-[#111318] dark:text-white text-xl font-bold">Admins</h2>
+<p class="text-[#636f88] dark:text-gray-400 text-sm leading-relaxed">
+                            Full visibility into campus-wide activities. Access robust analytics, moderate content, and maintain platform security.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800 p-8 text-center">
+<div class="flex flex-col gap-4 items-center">
+<div class="flex items-center gap-2 opacity-60">
+
+<h2 class="text-[#111318] dark:text-white text-sm font-bold tracking-tight">EventHub</h2>
+</div>
+<p class="text-[#636f88] dark:text-gray-500 text-xs">
+                © 2026 EventHub. All rights reserved.
+            </p>
+<div class="flex gap-4 text-xs font-medium text-primary">
+<a href="#">Instagram</a>
+<a href="#">Facebook</a>
+<a href="#">Linkedin</a>
+
+</div>
+</div>
+</footer>
+</body></html>

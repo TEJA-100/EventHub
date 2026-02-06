@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organiser - EventHub Analytics</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<style>
+body { font-family: 'Manrope', sans-serif; }
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ===== SAME GLASS STYLE AS PREVIOUS PAGE ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.text-primary { color: #2566E9; }
+</style>
+</head>
+
+<body class="bg-[#f6f8fc] min-h-screen">
+
+<!-- ================= TOP NAVBAR ================= -->
+<header class="sticky top-0 z-50 glass-card px-4 sm:px-6 py-3 flex items-center justify-between">
+
+  <div class="flex items-center gap-3">
+    <img src="assests/Logo.png" class="w-10 h-10 rounded-xl">
+    <span class="font-bold text-xl">EventHub</span>
+  </div>
+
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="O_dashboard.html" class="text-gray-500 hover:text-primary">Home</a>
+    <a href="O_createnewevent.html" class="text-gray-500 hover:text-primary">Create a New Event</a>
+    <a href="O_Analytics.html" class="text-primary font-bold">Analytics</a>
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <div class="hidden lg:flex items-center bg-white rounded-full border px-4 py-2 gap-2">
+      <span class="material-symbols-outlined text-gray-400">search</span>
+      <input class="bg-transparent border-none focus:ring-0 text-sm w-40" placeholder="Search events...">
+    </div>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white border">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white border text-red-500">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
+  </div>
+
+</header>
+
+<!-- ================= MOBILE NAV ================= -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t py-2 flex justify-around z-50">
+  <a href="Student_Dashboard.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-xs">Home</span>
+  </a>
+
+  <a href="O_createnewevent.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">add_circle</span>
+    <span class="text-xs">Create</span>
+  </a>
+
+  <a href="O_Analytics.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined">analytics</span>
+    <span class="text-xs font-bold">Analytics</span>
+  </a>
+</nav>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="max-w-[95%] mx-auto px-0 py-8 pb-28">
+
+<!-- HEADER -->
+<div class="mb-6">
+  <h1 class="text-2xl font-bold">Analytics Report</h1>
+  <p class="text-gray-500 text-sm">
+    Real-time performance metrics for your event ecosystem.
+  </p>
+</div>
+
+<!-- TOP STATS ROW -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+<div class="bg-white p-6 rounded-2xl border">
+  <div class="flex justify-between items-start">
+    <p class="text-sm font-semibold text-gray-600">REGISTRATIONS</p>
+    <span class="material-symbols-outlined text-blue-600">person_add</span>
+  </div>
+  <h2 class="text-3xl font-bold mt-3">2,482</h2>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border">
+  <div class="flex justify-between items-start">
+    <p class="text-sm font-semibold text-gray-600">REVENUE</p>
+    <span class="material-symbols-outlined text-purple-600">payments</span>
+  </div>
+  <h2 class="text-3xl font-bold mt-3">$42.5k</h2>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border">
+  <div class="flex justify-between items-start">
+    <p class="text-sm font-semibold text-gray-600">ATTENDANCE</p>
+    <span class="material-symbols-outlined text-orange-500">how_to_reg</span>
+  </div>
+  <h2 class="text-3xl font-bold mt-3">88.4%</h2>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border">
+  <div class="flex justify-between items-start">
+    <p class="text-sm font-semibold text-gray-600">ENGAGEMENT</p>
+    <span class="material-symbols-outlined text-pink-500">favorite</span>
+  </div>
+  <h2 class="text-3xl font-bold mt-3">76%</h2>
+</div>
+
+</div>
+
+<!-- GROWTH CHART -->
+<div class="bg-white p-6 rounded-2xl border mb-6">
+  <h2 class="font-bold mb-2">Growth Overview</h2>
+  <p class="text-sm text-gray-500 mb-4">
+    Total ticket sales across all events this month
+  </p>
+
+  <div class="h-64 flex items-center justify-center border rounded-lg bg-white/70">
+    <span class="text-gray-400">📈 Your line chart goes here</span>
+  </div>
+
+  <div class="flex justify-between mt-2 text-sm text-gray-500">
+    <span>Week 1</span>
+    <span>Week 2</span>
+    <span>Week 3</span>
+    <span>Week 4</span>
+  </div>
+</div>
+
+<!-- EVENT PERFORMANCE SECTION -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+<div class="lg:col-span-2 bg-white p-6 rounded-2xl border">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="font-bold">Event Performance</h2>
+    <a href="#" class="text-blue-600 text-sm">View All Events</a>
+  </div>
+
+<div class="space-y-4">
+
+<div class="flex items-center justify-between border-b pb-3">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">🎓</div>
+    <div>
+      <p class="font-semibold">Tech Career Expo 2024</p>
+      <p class="text-xs text-gray-500">Student Union Hall • May 12</p>
+    </div>
+  </div>
+  <div class="text-right">
+    <p class="text-sm">842 / 1,000</p>
+    <p class="text-blue-600">$18.4k</p>
+  </div>
+</div>
+
+<div class="flex items-center justify-between border-b pb-3">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">🎨</div>
+    <div>
+      <p class="font-semibold">Annual Art Gala</p>
+      <p class="text-xs text-gray-500">Modern Art Gallery • June 05</p>
+    </div>
+  </div>
+  <div class="text-right">
+    <p class="text-sm">120 / 150</p>
+    <p class="text-blue-600">$3.2k</p>
+  </div>
+</div>
+
+<div class="flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">🏀</div>
+    <div>
+      <p class="font-semibold">Intramural Finals</p>
+      <p class="text-xs text-gray-500">Sports Complex • June 18</p>
+    </div>
+  </div>
+  <div class="text-right">
+    <p class="text-sm">210 / 250</p>
+    <p class="text-blue-600">$2.1k</p>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="space-y-4">
+
+<div class="bg-white p-4 rounded-2xl border">
+  <h2 class="font-bold mb-3">Generate Reports</h2>
+  <button class="w-full py-2 border rounded-lg mb-2 bg-red-50 text-red-600">
+    Download PDF Report
+  </button>
+  <button class="w-full py-2 border rounded-lg bg-green-50 text-green-600">
+    Export to CSV / Excel
+  </button>
+</div>
+
+<div class="bg-white p-4 rounded-2xl border">
+  <h2 class="font-bold mb-3">Quick Actions</h2>
+
+  <div class="grid grid-cols-2 gap-2">
+    <button class="border p-3 rounded-lg">➕ New Event</button>
+    <button class="border p-3 rounded-lg">📤 Share Data</button>
+    <button class="border p-3 rounded-lg">📢 Announce</button>
+    <button class="border p-3 rounded-lg">📧 Email List</button>
+  </div>
+</div>
+
+</div>
+</div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - EMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#607AFB",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a"
+                    },
+                    fontFamily: {
+                        display: "Manrope"
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "1.5rem",
+                        xl: "2rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-morphism {
+                @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-800/30 shadow-sm;
+            }
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="hidden lg:flex fixed top-0 left-0 right-0 h-20 glass-morphism z-50 items-center justify-between px-8">
+<div class="flex items-center gap-3 shrink-0">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-[24px]">rocket_launch</span>
+</div>
+<h1 class="text-xl font-800 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">EventHub Admin</h1>
+</div><!--
+<nav class="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary font-bold transition-all">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<span class="text-sm">Home</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-[20px]">event</span>
+<span class="text-sm font-semibold">Events</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-semibold">Users</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-semibold">System</span>
+</button>
+</nav>-->
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 border-none focus:ring-2 focus:ring-primary w-48 text-sm" placeholder="Search..." type="text"/>
+</div>
+<button class="relative flex size-10 items-center justify-center rounded-full border border-slate-200 dark:border-slate-800 text-slate-600">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2.5 right-2.5 flex h-2 w-2 rounded-full bg-red-500 border border-white"></span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/20 overflow-hidden cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover size-full" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCW74QeBLpEv6mfw8u9HLgEzwu01ZnYQxW1zoWS65n9C41FptopqkNoZ0P7buyg6FwdIU1v1-InGN4haOeckEBrP5hK4sIQU1fc_GySycGhrEWUsa4i0z0T0ucl5NKa81lI9WGyAQTdW8Bmtc3lTOqo9baC2XqBxE_xyqWI8d-ZRV0zXehn5HZogrMtPxdRHgcRc-UZzqO1uLfQzLdECOLEzoSjsiZUYxkVaqzjm1us00qpQyAX5Wer0nZzzFPhQ_O3a6GmHB_6HLHY");'></div>
+</div>
+</div>
+</header>
+<header class="lg:hidden flex items-center justify-between p-6 glass-morphism sticky top-0 z-40">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</div>
+<h1 class="text-lg font-800 tracking-tight">EMS Admin</h1>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto no-scrollbar pt-0 lg:pt-24 pb-32 lg:pb-12 px-4 sm:px-8 max-w-[1400px] mx-auto w-full">
+<div class="py-8 space-y-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-800 text-slate-900 dark:text-white tracking-tight">Command Center</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1">Operational status: <span class="text-green-500 font-bold">Stable</span></p>
+</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-2 pl-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</div>
+<p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Uptime 99.998%</p>
+<button class="bg-slate-100 dark:bg-slate-800 p-2 rounded-xl">
+<span class="material-symbols-outlined text-primary text-[20px]">refresh</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Students</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">school</span>
+</div>
+<p class="text-3xl font-800 tracking-tight">12,482</p>
+<div class="mt-4 text-green-500 text-xs font-bold">+12.5%</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Revenue</p>
+<span class="material-symbols-outlined text-green-500 bg-green-500/10 p-2 rounded-lg">payments</span>
+</div>
+<p class="text-3xl font-800 tracking-tight">$45,210</p>
+<div class="mt-4 text-green-500 text-xs font-bold">+8.2%</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Organizers</p>
+<span class="material-symbols-outlined text-orange-500 bg-orange-500/10 p-2 rounded-lg">record_voice_over</span>
+</div>
+<p class="text-3xl font-800 tracking-tight">84</p>
+<div class="mt-4 text-primary text-xs font-bold">Currently Live</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+<div class="xl:col-span-8 bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-lg font-bold">Registration Trends</h3>
+<p class="text-sm text-slate-500">Weekly traffic analysis</p>
+</div>
+<div class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+<button class="px-4 py-1.5 text-xs font-bold rounded-md bg-white dark:bg-slate-700 shadow-sm">Week</button>
+<button class="px-4 py-1.5 text-xs font-bold text-slate-400">Month</button>
+</div>
+</div>
+<div class="h-64">
+<svg fill="none" height="100%" preserveAspectRatio="none" viewBox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V149H0V109Z" fill="url(#paint0_linear)"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#607AFB" stroke-linecap="round" stroke-width="4"></path>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear" x1="236" x2="236" y1="1" y2="149">
+<stop stop-color="#607AFB" stop-opacity="0.25"></stop>
+<stop offset="1" stop-color="#607AFB" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+</div>
+<div class="xl:col-span-4 bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-extrabold">Approvals</h3>
+<span class="text-primary text-xs font-bold bg-primary/10 px-2 py-1 rounded">3 New</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10 shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBo5shpNrTelR6mNVbxM4HROXdVr3Nu-tCLaddd3WfEiW_isMHYdxarWUquzf64ZKdGFQqkHissae_mUZxKL3Nm-41qfjZ1x5K0UcQTqEhZn3st6KCzpB-QkrwuSk59rXoOt0NdCNRUl7n7aZ0nK-xvRjt8luTyXhBr2GsKKvE5oK4--BNur8CZcczAAvDRZg5JoAaPgZb1c7ZxuhePLKo1CHK_UALgRY6S6Bj25IapqPDGzYe1bUkRfZupxUw674W_tNzhUJ89HvSx");'></div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-bold truncate">Tech Summit</p>
+<p class="text-[10px] text-slate-500">Stanford CS</p>
+</div>
+<button class="bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-full">Review</button>
+</div>
+<div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10 shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-1WRjUVxgCMJGA9ui_HjC0eSwg0dG0119bds4WkqFNgPvrLEwL3esvNEPLe8Jk2XE1Sjlw6KWnRLYaAwk0Lrdj-ySw-S8B84T-OktMZqXGLlpisN_sBzfvGUqW08CviRviz1W5Xzu80K4GcY0UXnfrgc_reFWEWQbv84cmMLDuBLmYZPrjGaPOtrhEBpygGxVU1T_bh56MKvHhY6oBjG9enVy3HOgZ3VeZwvDCeB3eYjrF55qbP9loTywZtdA1-Pfq9zrECy_Jopn");'></div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-bold truncate">Jazz Festival</p>
+<p class="text-[10px] text-slate-500">Arts Org</p>
+</div>
+<button class="bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-full">Review</button>
+</div>
+</div>
+<button class="w-full mt-6 py-3 text-xs font-bold text-slate-500 border border-slate-100 dark:border-slate-800 rounded-xl hover:bg-slate-50">View All</button>
+</div>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">health_and_safety</span>
+<h3 class="text-xl font-800 tracking-tight">System Health</h3>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-2">DB Cluster</p>
+<p class="text-xl font-800">99.98%</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Latency</p>
+<p class="text-xl font-800">42ms</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Requests</p>
+<p class="text-xl font-800">124k/h</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-2">Resource</p>
+<p class="text-xl font-800">14%</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="lg:hidden fixed bottom-0 left-0 right-0 h-20 glass-morphism z-50 flex items-center justify-around px-4 pb-2">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[24px]">grid_view</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">event</span>
+<span class="text-[10px] font-bold">Events</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">group</span>
+<span class="text-[10px] font-bold">Users</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] font-bold">System</span>
+</button>
+</nav>
+
+</body></html>

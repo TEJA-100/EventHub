@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Profile - EventHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#607AFB", "background-light": "#f5f6f8", "background-dark": "#0f1323"}, fontFamily: {display: "Manrope"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}}}};</script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .dark .glass-card {
+            background: rgba(17, 22, 33, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .bottom-nav-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white min-h-screen pb-24">
+<!-- Top App Bar -->
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white">
+
+<!-- =============== TOP NAVBAR =============== -->
+<header class="sticky top-0 z-50 glass-card px-4 sm:px-6 py-3 flex items-center justify-between">
+
+  <div class="flex items-center gap-3">
+    <img src="assests/Logo.png" class="w-10 h-10 rounded-xl">
+    <span class="font-bold text-xl ">EventHub</span>
+  </div>
+
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="Student_Dashboard.html" class="text-primary font-bold">Home</a>
+    <a href="S_events_reg.html" class="text-gray-500 hover:text-primary">Explore Events</a>
+    <a href="Stud_mypayments.html" class="text-gray-500 hover:text-primary">My Transactions</a>
+    <a href="S_profile.html" class="text-gray-500 hover:text-primary">Profile</a>
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <div class="hidden lg:flex items-center bg-white dark:bg-slate-800 rounded-full border px-4 py-2 gap-2">
+      <span class="material-symbols-outlined text-gray-400">search</span>
+      <input class="bg-transparent border-none focus:ring-0 text-sm w-40" placeholder="Search events...">
+    </div>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border text-red-500">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
+  </div>
+
+</header>
+
+<!-- =============== MOBILE NAV =============== -->
+<!-- =============== MOBILE NAV =============== -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t py-2 flex justify-around z-50">
+  <a href="Student_Dashboard.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-xs font-bold">Home</span>
+  </a>
+  <a href="S_events_reg.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">explore</span>
+    <span class="text-xs">Explore</span>
+  </a>
+  <a href="Stud_mypayments.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">Payments</span>
+    <span class="text-xs"> Transactions</span>
+  </a>
+  <a href="S_profile.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-xs">Profile</span>
+  </a>
+</nav>
+<main class="px-4">
+
+<!-- Quick Stats Grid -->
+ <!-- Text -->
+  <div class="m-7">
+    <h1 class="text-2xl font-bold">My Dashboard</h1>
+    <p class="text-sm text-dark-500">Welcome back, Teja Sai 👋</p>
+   </div>
+  </div>
+<div class="grid grid-cols-3 gap-5 mb-8">
+<div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-1">event_available</span>
+<p class="text-2xl font-extrabold text-[#111318] dark:text-white leading-none">12</p>
+<p class="text-[10px] uppercase tracking-wider font-bold text-[#636f88] mt-1">Events</p>
+</div>
+<div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-green-500 mb-1">stars</span>
+<p class="text-2xl font-extrabold text-[#111318] dark:text-white leading-none">450</p>
+<p class="text-[10px] uppercase tracking-wider font-bold text-[#636f88] mt-1">Credits</p>
+</div>
+<div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-orange-500 mb-1">task_alt</span>
+<p class="text-2xl font-extrabold text-[#111318] dark:text-white leading-none">08</p>
+<p class="text-[10px] uppercase tracking-wider font-bold text-[#636f88] mt-1">Attended</p>
+</div>
+</div>
+<!-- Section: Your Schedule -->
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold tracking-tight">Your Schedule</h3>
+<button class="text-primary text-sm font-semibold">See All</button>
+</div>
+<div class="space-y-4">
+<!-- Event Card 1 -->
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-xl shrink-0" data-alt="Digital art and modern design display" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWBMONqtSjvPlSI1Q2VD3DVs6hR29gLRVsNGIuZft7nE5DS4RdADM2bYCP2sDK3aGIM-bT4thZ4hC-9qFI06-D_z8rifs_nllphn5SOuLA3ijbxE3-B86ey1_TyHwEibTWOj7MMgO1cmlS9X8Sc6Mfm71PRkEhukv52s-7h1VkbG5I7lLJPPcZZs94GpUObrsIT4oE6JLKINTeWcd-kBq5dws9OuMNgQxhl5GWra-xXy_V3Vi5IMKGtDbuWqwkmR1KCPuNrF-dEcII");'>
+</div>
+<div class="flex flex-col flex-1 justify-between h-24">
+<div>
+<p class="text-[#111318] dark:text-white text-base font-bold leading-tight">Tech Innovation Summit</p>
+<div class="flex items-center gap-1 text-[#636f88] dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-xs font-medium">Tomorrow, 10:00 AM</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+                            Ticket
+                        </button>
+<button class="bg-primary/10 dark:bg-primary/20 text-primary p-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-xl shrink-0" data-alt="Workshop table with design tools" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCf6Z--70SaG-uVrumpu-2uI_THvVe8QpXNyGjC4xq8gHgAd10EqCu3xljQEHHSpVJ5dSveF_-ErrrTHQh8cjUxn8ccGoc9UOBOolcy0Z0_o6YRwVBc9uobxrWDJsyJnSTTcuIpqgtmHayn6l4zPnQhqymQECSoYlSvnmxD83o2oAfbl5_545OejJ0gFecy6jGc9tShaW7r8mwqbmwGsFlCcr99iKr62W3g--Lb79Xdy3euuGo6M5jnzaBhQe8OM2KS9g5m6BK6Xd92");'>
+</div>
+<div class="flex flex-col flex-1 justify-between h-24">
+<div>
+<p class="text-[#111318] dark:text-white text-base font-bold leading-tight">Art &amp; Design Workshop</p>
+<div class="flex items-center gap-1 text-[#636f88] dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-xs font-medium">Friday, 2:00 PM</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+                            Ticket
+                        </button>
+<button class="bg-primary/10 dark:bg-primary/20 text-primary p-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Event Card 3 -->
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-xl shrink-0" data-alt="Modern architecture university building" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnX0eD94V0NV1SAD6-pnGACQ6sZ_xbFOajzQCr8AIkNpSjpJWEvoRPYgIe5X3j1uHq4M0tQm8mDHebmVWvPvqrASPIYDky0ef3tX0mn7lf8VfBhkRlsebw7_5QLqn7JQyTdTQuNVUdfnysp2Xt6n0pZ6AhfSZVrWp_QKksKhwij7OAhCWiokEh8esr-Y1bQWgfjZrWL39kfRdOxqWwOBIccwGr0qM-vtIKKATHm5Uk0hl2epj2BdLMvI6Zm_USEc4UufGcfqjuJ7ZH");'>
+</div>
+<div class="flex flex-col flex-1 justify-between h-24">
+<div>
+<p class="text-[#111318] dark:text-white text-base font-bold leading-tight">Campus Open Mic Night</p>
+<div class="flex items-center gap-1 text-[#636f88] dark:text-gray-400 mt-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<p class="text-xs font-medium">Saturday, 8:00 PM</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-primary text-white px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+                            Ticket
+                        </button>
+<button class="bg-primary/10 dark:bg-primary/20 text-primary p-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommendations -->
+<h3 class="text-xl font-bold tracking-tight mt-8 mb-4">Recommended for you</h3>
+<div class="flex gap-4 overflow-x-auto pb-6 no-scrollbar">
+<div class="min-w-[280px] rounded-2xl overflow-hidden bg-white dark:bg-gray-800 shadow-md">
+<div class="h-32 bg-cover bg-center" data-alt="Data science concept illustration" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDA4wyymr0D9z-DMAMGVrlx1i_jCMmo3gnMlAUJYJubowBVa8wuCQA1QDpqOVkQxG_ntcqu4SI7fmUmae3G1wGwPBDT1sIDV9ghvc9yApoIkqJAebAhGnBp8X6LQSGVXDkU69ZlPGyb-tGzbieSqmo_uJQVJvCO0QwxW3Wa4O-Lli-dnV6_XZNDLkq0w_bFwPS1ElJkOq8WY0AV48fhZusoI0jGbcpXSwnNly3yFlgC_g0fnWMQzaHSY_D6TiV-3z0KOiglebtlWBXj");'>
+</div>
+<div class="p-4">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">Data Science</span>
+<h4 class="font-bold text-sm mt-2">Machine Learning 101</h4>
+<p class="text-xs text-gray-500 mt-1">2.4k Students Joined</p>
+</div>
+</div>
+<div class="min-w-[280px] rounded-2xl overflow-hidden bg-white dark:bg-gray-800 shadow-md">
+<div class="h-32 bg-cover bg-center" data-alt="Global networking connect people" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFzB5oR9PpRO-Oh3e7TriOw1qJUiVTmMinQsZF7hfaDOvzWlLj-BVXXZM8Onj7nfkTQ_7jnJyhPIiN9BiCzWfHYhHE5NHi7EPViIPy3HF8W8flXRfTbyCV7NpUryyc0PMpc9Ak-krugcvUAE162BhUYE90j9aKZF1ZLD6qNYgRHcdxXKzBH9fqiIaorVHaXBYHI2gze8M2PVii3nyxtvGRhZQ6j3Mr5yB7gaNdxAkaZxAj_bTJOcoQpR3gDu9hXth3H_4cTjqh1inG");'>
+</div>
+<div class="p-4">
+<span class="px-2 py-1 bg-orange-100 text-orange-600 text-[10px] font-bold rounded uppercase">Networking</span>
+<h4 class="font-bold text-sm mt-2">Alumni Mixer Night</h4>
+<p class="text-xs text-gray-500 mt-1">800+ Students Joined</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

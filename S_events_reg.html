@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Event Discovery - EventHub</title>
+
+<link rel="icon" type="image/png" href="assests/Logo.png">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;600&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#607AFB",
+        "background-light": "#f5f6f8",
+        "background-dark": "#0f1323"
+      },
+      fontFamily: { display: "Manrope" },
+      borderRadius: { xl: "1.5rem", "2xl": "2rem", "3xl": "3rem" }
+    }
+  }
+}
+</script>
+
+<style type="text/tailwindcss">
+.glass-card {
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.3);
+}
+.dark .glass-card {
+  background: rgba(17,22,33,.75);
+}
+</style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white min-h-screen">
+
+<!-- ================= NAVBAR ================= -->
+<header class="sticky top-0 z-50 glass-card px-6 py-4 flex items-center justify-between">
+
+  <div class="flex items-center gap-3">
+    <img src="assests/Logo.png" class="w-10 h-10 rounded-xl">
+    <span class="font-bold text-xl">EventHub</span>
+  </div>
+
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="Student_Dashboard.html" class="text-primary font-bold">Home</a>
+    <a href="S_events_reg.html" class="text-gray-500 hover:text-primary">Explore Events</a>
+    <a href="Stud_mypayments.html" class="text-gray-500 hover:text-primary"> Transactions</a>
+    <a href="S_profile.html" class="text-gray-500 hover:text-primary">Profile</a>
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <div class="hidden lg:flex items-center bg-white dark:bg-slate-800 rounded-full border px-4 py-2 gap-2">
+      <span class="material-symbols-outlined text-gray-400">search</span>
+      <input class="bg-transparent border-none focus:ring-0 text-sm w-40" placeholder="Search events...">
+    </div>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border text-red-500">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= MOBILE NAV ================= -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t py-2 flex justify-around z-50">
+  <a href="Student_Dashboard.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-xs font-bold">Home</span>
+  </a>
+  <a href="S_events_reg.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">explore</span>
+    <span class="text-xs">Explore Events</span>
+  </a>
+  <a href="Stud_mypayments.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">payments</span>
+    <span class="text-xs"> Transactions</span>
+  </a>
+  <a href="S_profile.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-xs">Profile</span>
+  </a>
+</nav>
+
+<!-- ================= MAIN ================= -->
+
+<main class="max-w-[95%] mx-auto px-0 py-8 pb-28">
+
+<!-- Header -->
+<div>
+  <h1 class="text-2xl font-bold">Event Discovery</h1>
+  <p class="text-sm text-gray-500">Find the best events around you</p>
+</div>
+
+<!-- FILTER BUTTONS -->
+<div class="flex flex-wrap items-center justify-between gap-4 py-6">
+  <div class="flex gap-2 overflow-x-auto">
+    <button class="px-6 h-10 rounded-full bg-primary text-white font-semibold">All</button>
+    <button class="px-6 h-10 rounded-full bg-white dark:bg-gray-800 border">Workshops</button>
+    <button class="px-6 h-10 rounded-full bg-white dark:bg-gray-800 border">Social</button>
+    <button class="px-6 h-10 rounded-full bg-white dark:bg-gray-800 border">Sports</button>
+  </div>
+</div>
+
+<!-- ================= FEATURED FOR YOU ================= -->
+<section class="mt-6">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-bold">Featured for You</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Featured Card 1 -->
+    <div class="group relative h-64 rounded-3xl overflow-hidden shadow-lg">
+
+      <span class="absolute top-4 right-4 z-20 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+        MUSIC
+      </span>
+
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC88M8WArVH7K5lYmLXdGvvr7rs5nQL6-tNPyGHXH0JMSj5_ac5EEIifbNXfNVFzIGWTiL0AgVwkRiLIT4VGektL3j-GCe0SIpcHiA0ERtPr6_vhHwRhHg8TfmWMdBf-FT2Ga1JszizujiZTh9B6pSVRiKQ92Es9b2BTy6Z222WOfpNEFO2KeGKyk_P54XqfF0B9NDRIuDUGsYUaCkw3vBxf6jbOaAuV_16TZqjNJJsG63r_QeBGFRpy0WU1A09tk9EqO6mlhXMxsFR"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+      <div class="absolute bottom-6 left-6 text-white z-10">
+        <h3 class="text-2xl font-bold">Annual Spring Concert 2024</h3>
+        <p class="text-sm">Oct 20 • 6:00 PM • Main Square</p>
+      </div>
+    </div>
+
+    <!-- Featured Card 2 -->
+    <div class="group relative h-64 rounded-3xl overflow-hidden shadow-lg">
+
+      <span class="absolute top-4 right-4 z-20 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
+        TECH
+      </span>
+
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUgNbTD7mbu_3V_PEvKnzIIBqsvEHjd5v1hIM3I2bgc_bJVTKFyzo2UYVA7Ij-WN9KUuoNT2tPHX2yi-BfzLP_7tX5yzYw6a8kfFW5UwwqqJ3vdfVb75258EFOlmVc8Qr7QU0Uwxjrd-P7HhoMpoLfKSGgfAQNohsPRXd-wr7me7TE-GHLe1YmtHMsFDSEi6xZVMCamPED8uQTtMRbm8EPqHiWGrrbapKjbqrB4Tck7tMZcQHzeuYo9scIYptRABjVC3qXJLvjv9A5"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+      <div class="absolute bottom-6 left-6 text-white z-10">
+        <h3 class="text-2xl font-bold">UI/UX Design Bootcamp</h3>
+        <p class="text-sm">Nov 05 • 10:00 AM • Lab 4</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= DISCOVER EVENTS ================= -->
+<section class="mt-12">
+  <h2 class="text-xl font-bold mb-6">Discover Events</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Card 1 -->
+    <div class="bg-white dark:bg-gray-800 rounded-3xl p-4 border border-transparent 
+                transition-all duration-300 hover:border-primary hover:-translate-y-1 
+                hover:shadow-[0_0_25px_rgba(96,122,251,0.45)]">
+
+      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7"
+        class="rounded-2xl h-48 w-full object-cover mb-4">
+
+      <span class="text-xs font-bold text-primary">NETWORKING</span>
+      <h3 class="font-bold text-lg mt-1">Startup Networking Night</h3>
+      <p class="text-sm text-gray-500">Mon, Oct 23 • 5:30 PM</p>
+
+      <button class="mt-4 w-full bg-primary text-white py-3 rounded-xl font-bold">
+         <a href="S_Event_details.html"> Register Now</a>
+      </button>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white dark:bg-gray-800 rounded-3xl p-4 border border-transparent 
+                transition-all duration-300 hover:border-primary hover:-translate-y-1 
+                hover:shadow-[0_0_25px_rgba(96,122,251,0.45)]">
+
+      <img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf"
+        class="rounded-2xl h-48 w-full object-cover mb-4">
+
+      <span class="text-xs font-bold text-primary">SPORTS</span>
+      <h3 class="font-bold text-lg mt-1">Inter-University Basketball</h3>
+      <p class="text-sm text-gray-500">Sat, Oct 21 • 2:00 PM</p>
+
+      <button class="mt-4 w-full bg-primary/10 text-primary py-3 rounded-xl font-bold">
+         <a href="S_Event_details.html">Get Tickets</a>
+      </button>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white dark:bg-gray-800 rounded-3xl p-4 border border-transparent 
+                transition-all duration-300 hover:border-primary hover:-translate-y-1 
+                hover:shadow-[0_0_25px_rgba(96,122,251,0.45)]">
+
+      <img src="https://images.unsplash.com/photo-1551434678-e076c223a692"
+        class="rounded-2xl h-48 w-full object-cover mb-4">
+
+      <span class="text-xs font-bold text-primary">WORKSHOP</span>
+      <h3 class="font-bold text-lg mt-1">Creative Writing Seminar</h3>
+      <p class="text-sm text-gray-500">Wed, Oct 25 • 3:00 PM</p>
+
+      <button class="mt-4 w-full bg-primary text-white py-3 rounded-xl font-bold">
+        <a href="S_Event_details.html"> Register Now</a>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+</main>
+</body>
+</html>

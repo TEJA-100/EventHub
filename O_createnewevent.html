@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create New Event - EventHub</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+body { font-family: 'Manrope', sans-serif; background: #f8fafc; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.text-primary { color: #2566E9; }
+.card { background: #fff; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.input { border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.5rem 0.75rem; width: 100%; }
+.button-primary { background: linear-gradient(90deg,#2566e9,#7f5af0); color: white; padding: 0.5rem 1.25rem; border-radius: 0.5rem; font-semibold; }
+.button-secondary { border: 1px solid #cbd5e1; color: #334155; padding: 0.5rem 1.25rem; border-radius: 0.5rem; font-semibold; }
+.step { width: 2rem; height: 0.5rem; background: #e2e8f0; border-radius: 0.25rem; position: relative; }
+.step.active { background: #2566e9; }
+</style>
+</head>
+<body class="bg-[#f6f8fc] min-h-screen"> <!-- Added padding to avoid overlap with fixed nav -->
+
+<!-- ================= TOP NAVBAR ================= -->
+<header class="sticky top-0 z-50 glass-card px-4 sm:px-6 py-3 flex items-center justify-between">
+
+  <div class="flex items-center gap-3">
+    <img src="assests/Logo.png" class="w-10 h-10 rounded-xl">
+    <span class="font-bold text-xl ">EventHub</span>
+  </div>
+
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="O_dashboard.html" class="text-primary font-bold">Home</a>
+    <a href="O_createnewevent.html" class="text-gray-500 hover:text-primary">Create a New Event</a>
+    <a href="O_Analytics.html" class="text-gray-500 hover:text-primary">Analytics</a>
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <div class="hidden lg:flex items-center bg-white  rounded-full border px-4 py-2 gap-2">
+      <span class="material-symbols-outlined text-gray-400">search</span>
+      <input class="bg-transparent border-none focus:ring-0 text-sm w-40" placeholder="Search events...">
+    </div>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white  border">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white  border text-red-500">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
+  </div>
+
+</header>
+
+<!-- ================= MOBILE NAV ================= -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t py-2 flex justify-around z-50">
+  <a href="Student_Dashboard.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-xs font-bold">Home</span>
+  </a>
+  <a href="S_events_reg.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">Create</span>
+    <span class="text-xs">Create a New Event</span>
+  </a>
+  <a href="Stud_mypayments.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">Analytics</span>
+    <span class="text-xs">Analytics</span>
+  </a>
+  
+</nav>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="max-w-7xl mx-auto mt-6">
+
+  <!-- Header + Step -->
+  <div class="flex justify-between items-center mb-8">
+    <div>
+      <h1 class="text-2xl font-bold">Create New Event</h1>
+      <p class="text-gray-500 text-sm">Please Give All The Event Information</p>
+    </div>
+    <div class="flex gap-2 items-center">
+      <span class="step active"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
+    </div>
+  </div>
+
+ <!-- Form + Preview -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+  <!-- Form -->
+  <div class="space-y-6 w-full">
+    <div class="card space-y-4 w-full">
+      <h2 class="font-semibold text-lg">General Information</h2>
+
+      <div>
+        <label class="text-sm text-gray-600">Event Title</label>
+        <input type="text" class="input mt-1" placeholder="e.g. Annual Tech Symposium 2024">
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Category</label>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <button class="button-primary flex-1 min-w-[100px]">Workshop</button>
+          <button class="button-secondary flex-1 min-w-[100px]">Seminar</button>
+          <button class="button-secondary flex-1 min-w-[100px]">Networking</button>
+          <button class="button-secondary flex-1 min-w-[100px]">Social</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Banner Image</label>
+        <div class="mt-2 border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center text-gray-400 cursor-pointer">
+          <span class="material-symbols-outlined mr-2">image</span> Drag and drop or click to upload
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Description</label>
+        <textarea class="input mt-1 h-24" placeholder="Tell the world what makes your event special..."></textarea>
+      </div>
+
+      <!-- Additional Details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm text-gray-600">Date</label>
+          <input type="date" class="input mt-1 w-full">
+        </div>
+        <div class="flex gap-2">
+          <div class="flex-1">
+            <label class="text-sm text-gray-600">Start Time</label>
+            <input type="time" class="input mt-1 w-full">
+          </div>
+          <div class="flex-1">
+            <label class="text-sm text-gray-600">End Time</label>
+            <input type="time" class="input mt-1 w-full">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Venue</label>
+        <input type="text" class="input mt-1 w-full" placeholder="e.g. Main Auditorium">
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Room Number</label>
+        <input type="text" class="input mt-1 w-full" placeholder="e.g. A101">
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Student Coordinators</label>
+        <div class="mt-2 space-y-2">
+          <input type="text" class="input w-full" placeholder="Name">
+          <input type="tel" class="input w-full" placeholder="Phone Number">
+        </div>
+        <button class="button-secondary mt-2 w-full">+ Add Another Coordinator</button>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flex flex-col sm:flex-row justify-between mt-2 gap-2">
+      <button class="button-secondary w-full sm:w-auto">Save as Draft</button>
+      <button class="button-primary w-full sm:w-auto">Publish</button>
+    </div>
+  </div>
+
+  <!-- Preview -->
+  <div class="space-y-6 w-full">
+    <div class="card w-full">
+      <div class="relative">
+        <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=600" class="w-full h-40 md:h-48 object-cover rounded-lg mb-4">
+        <span class="absolute top-2 left-2 bg-purple-100 text-purple-700 px-2 py-1 text-xs rounded-full font-semibold">NEW EVENT</span>
+        <span class="absolute top-2 right-2 bg-green-100 text-green-700 px-2 py-1 text-xs rounded-full font-semibold">LIVE VIEW</span>
+      </div>
+      <h3 class="font-bold text-lg">Designing for the Future: EMS Workshop</h3>
+      <p class="text-gray-500 text-sm mt-1"><span class="material-symbols-outlined align-middle text-xs">schedule</span> October 24, 2024 • 10:00 AM - 4:00 PM</p>
+      <p class="text-gray-500 text-sm mt-1"><span class="material-symbols-outlined align-middle text-xs">place</span> Main Auditorium, Room A101</p>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center mt-2 space-y-2 sm:space-y-0 sm:space-x-4">
+        <div>
+          <span class="font-semibold text-sm">Coordinators:</span>
+          <ul class="text-gray-500 text-xs">
+            <li>John Doe - 9876543210</li>
+            <li>Jane Smith - 9123456780</li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex items-center mt-2">
+        <img src="https://i.pravatar.cc/24?img=12" class="w-6 h-6 rounded-full -ml-1 border-2 border-white">
+        <img src="https://i.pravatar.cc/24?img=13" class="w-6 h-6 rounded-full -ml-1 border-2 border-white">
+        <span class="text-gray-500 text-xs ml-2">+12 Interested</span>
+      </div>
+      <button class="mt-4 w-full bg-gray-100 text-gray-600 py-2 rounded-lg text-sm">Preview Only</button>
+    </div>
+
+    <div class="card text-sm text-gray-500 w-full">
+      <p><span class="material-symbols-outlined align-middle text-gray-400"></span> High-quality banners with minimal text typically increase engagement by up to 45%.</p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

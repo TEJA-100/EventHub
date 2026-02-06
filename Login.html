@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EventHub - Login</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="assests/Logo.png">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#3366FF",
+        teal: "#00C2A0",
+        navy: "#0A1F44",
+        gray: {
+          text: "#6C757D",
+          bg: "#E5E5E5"
+        }
+      },
+      fontFamily: {
+        display: ["Manrope", "sans-serif"],
+      },
+      borderRadius: {
+        '3xl': '1.875rem',
+      }
+    }
+  }
+};
+</script>
+
+<style type="text/tailwindcss">
+:root {
+  --primary-gradient: linear-gradient(120deg, #3366FF 0%, #00C2A0 100%);
+}
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: #FFFFFF;
+}
+.bg-auth-gradient {
+  background: var(--primary-gradient);
+}
+.text-auth-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+</style>
+
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4 bg-white relative overflow-x-hidden">
+
+<div class="z-10 w-full max-w-[500px] bg-white/60 backdrop-blur-xl rounded-[2rem] shadow-[0_20px_50px_rgba(10,31,68,0.1)] overflow-hidden border border-white/50">
+
+  <div class="px-8 pt-10 pb-4 text-center">
+    <h1 class="text-navy tracking-tight text-3xl md:text-4xl font-bold leading-tight">
+      Login into the Community
+    </h1>
+    <p class="text-gray-text mt-3 text-sm md:text-base font-medium">
+      Experience the next-gen Event Management System
+    </p>
+  </div>
+
+  <div class="px-8 pb-10 space-y-6">
+
+    <div class="space-y-1.5">
+      <label class="text-navy text-xs font-bold ml-1">Email Address</label>
+      <input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Email" type="email"/>
+    </div>
+
+    <div class="space-y-1.5">
+      <label class="text-navy text-xs font-bold ml-1">Password</label>
+      <input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
+
+      <div class="flex justify-end">
+        <a href="forgot-password.html" class="text-xs font-bold text-primary hover:underline">
+          Forgot Password?
+        </a>
+      </div>
+    </div>
+
+    <button class="w-full h-14 bg-auth-gradient hover:opacity-90 text-white font-bold rounded-3xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-base">
+      Login
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+
+    <p class="text-center text-sm text-gray-text font-medium">
+      Don’t have an account?
+      <a href="signup.html" class="text-primary font-bold hover:underline">
+        Create New Account
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+</body>
+</html>

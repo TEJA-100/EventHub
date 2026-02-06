@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Student Dashboard - EventHub</title>
+
+<link rel="icon" type="image/png" href="assests/Logo.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#607AFB",
+        "background-light": "#f5f6f8",
+        "background-dark": "#0f1323"
+      },
+      fontFamily: { display: "Manrope" }
+    }
+  }
+}
+</script>
+
+<style type="text/tailwindcss">
+.glass-card {
+  background: rgba(255,255,255,.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.3);
+}
+.dark .glass-card {
+  background: rgba(17,22,33,.8);
+}
+</style>
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-white">
+
+<!-- =============== TOP NAVBAR =============== -->
+<header class="sticky top-0 z-50 glass-card px-4 sm:px-6 py-3 flex items-center justify-between">
+
+  <div class="flex items-center gap-3">
+    <img src="assests/Logo.png" class="w-10 h-10 rounded-xl">
+    <span class="font-bold text-xl ">EventHub</span>
+  </div>
+
+  <nav class="hidden md:flex items-center gap-8">
+    <a href="Student_Dashboard.html" class="text-primary font-bold">Home</a>
+    <a href="S_events_reg.html"class="text-gray-500 hover:text-primary">Explore Events</a>
+    <a href="Stud_mypayments.html" class="text-gray-500 hover:text-primary"> Transactions</a>
+    <a href="S_profile.html" class="text-gray-500 hover:text-primary">Profile</a>
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <div class="hidden lg:flex items-center bg-white dark:bg-slate-800 rounded-full border px-4 py-2 gap-2">
+      <span class="material-symbols-outlined text-gray-400">search</span>
+      <input class="bg-transparent border-none focus:ring-0 text-sm w-40" placeholder="Search events...">
+    </div>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border">
+      <span class="material-symbols-outlined">notifications</span>
+    </button>
+
+    <button class="size-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border text-red-500">
+      <span class="material-symbols-outlined">logout</span>
+    </button>
+  </div>
+
+</header>
+
+<!-- =============== MOBILE NAV =============== -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t py-2 flex justify-around z-50">
+  <a href="Student_Dashboard.html" class="flex flex-col items-center text-primary">
+    <span class="material-symbols-outlined">home</span>
+    <span class="text-xs font-bold">Home</span>
+  </a>
+  <a href="S_events_reg.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">explore</span>
+    <span class="text-xs">Explore</span>
+  </a>
+  <a href="Stud_mypayments.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">Payments</span>
+    <span class="text-xs"> Transactions</span>
+  </a>
+  <a href="S_profile.html" class="flex flex-col items-center text-gray-500">
+    <span class="material-symbols-outlined">person</span>
+    <span class="text-xs">Profile</span>
+  </a>
+</nav>
+
+<!-- =============== MAIN CONTENT =============== -->
+<main class="max-w-[95%] mx-auto px-0 py-8 pb-28">
+
+  <div class="mb-8 flex items-center gap-4">
+  <!-- Profile Image -->
+  <img 
+    src="https://i.pravatar.cc/100?img=12" 
+    alt="Profile"
+    class="w-12 h-12 rounded-full object-cover border-2 border-primary shadow"
+  >
+
+  <!-- Text -->
+  <div>
+    <h1 class="text-2xl font-bold">My Dashboard</h1>
+    <p class="text-sm text-gray-500">Welcome back, Teja Sai 👋</p>
+   </div>
+  </div>
+
+
+  <!-- Stats -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    <!-- Total Points -->
+  <div class="relative p-8 rounded-2xl bg-gradient-to-br from-primary via-blue-600 to-purple-600 text-white shadow-xl overflow-hidden">
+    <span class="material-symbols-outlined absolute top-5 right-5 text-white/30 text-5xl">
+      military_tech
+    </span>
+    <p class="opacity-90">Total Participation Points</p>
+    <h2 class="text-4xl font-bold mt-2">2,450</h2>
+  </div>
+
+  <!-- Events Attended -->
+  <div class="relative p-8 rounded-2xl glass-card shadow overflow-hidden">
+    <span class="material-symbols-outlined absolute top-5 right-5 text-primary/30 text-5xl">
+      event_available
+    </span>
+    <p class="text-gray-500">Events Attended</p>
+    <h2 class="text-4xl font-bold mt-2">12</h2>
+    <p class="text-green-500 text-sm mt-2 flex items-center gap-1">
+      <span class="material-symbols-outlined text-base">trending_up</span>
+      2 from last month
+    </p>
+  </div>
+
+  <!-- Activity Hours -->
+  <div class="relative p-8 rounded-2xl glass-card shadow overflow-hidden">
+    <span class="material-symbols-outlined absolute top-5 right-5 text-primary/30 text-5xl">
+      schedule
+    </span>
+    <p class="text-gray-500">Activity Hours</p>
+    <h2 class="text-4xl font-bold mt-2">28.5</h2>
+
+    <div class="w-full h-2 bg-gray-200 dark:bg-slate-700 rounded-full mt-4">
+      <div class="h-full bg-primary rounded-full" style="width:95%"></div>
+    </div>
+
+    <p class="text-sm text-primary mt-2">Next goal: 30h</p>
+  </div>
+
+   
+
+  </section>
+
+  <!-- Events + Deadlines -->
+  <section class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+
+    <!-- Events -->
+    <div class="xl:col-span-2">
+      <h2 class="text-2xl font-bold mb-6">My Active Events</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        <div class="glass-card rounded-2xl overflow-hidden shadow hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60" class="h-48 w-full object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold">AI Ethics & Governance</h3>
+            <p class="text-sm text-gray-500 mt-2">Oct 24 • 10:00 AM</p>
+            <p class="text-sm text-gray-500">Tech Hall B</p>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl overflow-hidden shadow hover:shadow-lg transition">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=60" class="h-48 w-full object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold">Contemporary Art Mixer</h3>
+            <p class="text-sm text-gray-500 mt-2">Oct 26 • 2:00 PM</p>
+            <p class="text-sm text-gray-500">Student Union</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        <button class="bg-primary text-white py-4 rounded-2xl font-semibold shadow-lg hover:scale-105 transition">
+          <a href="S_events_reg.html">🔍 Find New Events</a>
+        </button>
+        <button class="glass-card text-primary py-4 rounded-2xl font-semibold shadow hover:scale-105 transition">
+          Scan Check-in QR
+        </button>
+      </div>
+    </div>
+
+    <!-- Deadlines -->
+    <div>
+      <h2 class="text-2xl font-bold mb-6">Upcoming Deadlines</h2>
+
+      <div class="space-y-4">
+        <div class="glass-card p-4 rounded-xl flex justify-between items-center">
+          <div>
+            <p class="font-semibold">Event Feedback Due</p>
+            <p class="text-sm text-gray-500">Hackathon 2024</p>
+          </div>
+          <span class="text-red-500 text-sm font-bold">4h left</span>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl flex justify-between items-center">
+          <div>
+            <p class="font-semibold">Registration Closing</p>
+            <p class="text-sm text-gray-500">Winter Formal</p>
+          </div>
+          <span class="text-sm font-bold text-gray-500">2 days</span>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl flex justify-between items-center">
+          <div>
+            <p class="font-semibold">Review Application</p>
+            <p class="text-sm text-gray-500">Leadership Workshop</p>
+          </div>
+          <span class="text-sm font-bold text-gray-500">5 days</span>
+        </div>
+      </div>
+
+      <div class="mt-6 p-6 rounded-2xl bg-gradient-to-r from-purple-600 to-primary text-white shadow-xl">
+        <h3 class="font-bold text-lg">Be an Organizer?</h3>
+        <p class="text-sm mt-2 opacity-90">Start your own community and host incredible campus events.</p>
+        <button class="bg-white text-primary px-4 py-2 rounded-xl mt-4 font-semibold">
+          Upgrade Account
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+</body>
+</html>
