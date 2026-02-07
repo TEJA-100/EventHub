@@ -1,160 +1,197 @@
-
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>EventHub</title>
+
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#3366FF",
-                        teal: "#00C2A0",
-                        navy: "#0A1F44",
-                        gray: {
-                            text: "#6C757D",
-                            bg: "#E5E5E5"
-                        }
-                    },
-                    fontFamily: {
-                        display: ["Manrope", "sans-serif"],
-                    },
-                    borderRadius: {
-                        '3xl': '1.875rem', // 30px
-                    }
-                }
-            }
-        };
-    </script>
-<style type="text/tailwindcss">
-        :root {
-            --primary-gradient: linear-gradient(120deg, #3366FF 0%, #00C2A0 100%);
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#3366FF",
+        teal: "#00C2A0",
+        navy: "#0A1F44",
+        gray: {
+          text: "#6C757D",
+          bg: "#E5E5E5"
         }
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: #FFFFFF;
-        }
-        .bg-auth-gradient {
-            background: var(--primary-gradient);
-        }
-        .text-auth-gradient {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+      },
+      fontFamily: {
+        display: ["Manrope", "sans-serif"],
+      },
+      borderRadius: {
+        '3xl': '1.875rem',
+      }
     }
-  </style>
-  </head>
+  }
+};
+</script>
+
+<style type="text/tailwindcss">
+:root {
+  --primary-gradient: linear-gradient(120deg, #3366FF 0%, #00C2A0 100%);
+}
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: #FFFFFF;
+}
+.bg-auth-gradient {
+  background: var(--primary-gradient);
+}
+.text-auth-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+</style>
+
+<!-- =================== FIREBASE SDK =================== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// 👉 PASTE YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+document.getElementById("signupBtn").addEventListener("click", async function () {
+
+  const name = document.getElementById("fullname");
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirmPassword");
+
+  // remove old red borders
+  name.classList.remove("border-red-500");
+  email.classList.remove("border-red-500");
+  password.classList.remove("border-red-500");
+  confirmPassword.classList.remove("border-red-500");
+
+  const oldError = document.getElementById("signupError");
+  if (oldError) oldError.remove();
+
+  if (!name.value || !email.value || !password.value || !confirmPassword.value) {
+    showError("⚠ Please fill all fields!");
+    name.classList.add("border-red-500");
+    email.classList.add("border-red-500");
+    password.classList.add("border-red-500");
+    confirmPassword.classList.add("border-red-500");
+    return;
+  }
+
+  if (password.value !== confirmPassword.value) {
+    showError("❌ Passwords do not match!");
+    password.classList.add("border-red-500");
+    confirmPassword.classList.add("border-red-500");
+    return;
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      name: name.value,
+      email: email.value,
+      role: "student",
+      createdAt: new Date()
+    });
+
+    window.location.href = "Student_Dashboard.html";
+
+  } catch (error) {
+    showError("❌ " + error.message);
+    email.classList.add("border-red-500");
+  }
+});
+
+function showError(msg) {
+  const errorDiv = document.createElement("div");
+  errorDiv.id = "signupError";
+  errorDiv.className = "text-red-600 text-sm text-center font-bold mt-4";
+  errorDiv.innerText = msg;
+  document.querySelector(".px-8.pb-10").appendChild(errorDiv);
+}
+</script>
+</head>
+
 <body class="min-h-screen flex items-center justify-center p-4 bg-white relative overflow-x-hidden">
+
 <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
 <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
 <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-teal/5 rounded-full blur-3xl"></div>
 </div>
-<div class="z-10 w-full max-w-[500px] md:max-w-[480px] bg-gray-bg lg:bg-white/40 lg:backdrop-blur-xl rounded-[2rem] shadow-[0_20px_50px_rgba(10,31,68,0.1)] overflow-hidden border border-white/50">
-<div class="flex items-center px-8 pt-8 pb-2 justify-end">
-<button class="size-10 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
-<span class="material-symbols-outlined text-navy">close</span>
-</button>
-</div>
-<div class="px-8 py-4 text-center">
-<h1 class="text-navy tracking-tight text-3xl md:text-4xl font-bold leading-tight">Join the Community</h1>
-<p class="text-gray-text mt-3 text-sm md:text-base font-medium">Experience the next-gen Event Management System</p>
-</div>
-<div class="px-8 py-4">
-<div class="flex h-12 w-full items-center justify-center rounded-full bg-white p-1 shadow-sm border border-gray-200">
 
-<label class="flex cursor-pointer h-full grow items-center justify-center rounded-full px-2 transition-all duration-300 bg-navy text-white has-[:checked]:bg-navy has-[:checked]:text-white font-bold text-sm">
-<span class="truncate">Create Account</span>
-<input checked="" class="hidden" name="auth_mode" type="radio" value="create_account"/>
-</label>
-</div>
-</div>
+<div class="z-10 w-full max-w-[500px] md:max-w-[480px] bg-gray-bg lg:bg-white/40 lg:backdrop-blur-xl rounded-[2rem] shadow-[0_20px_50px_rgba(10,31,68,0.1)] overflow-hidden border border-white/50">
+
 <div class="px-8 pb-10 space-y-6">
-<div>
-<h3 class="text-navy text-sm font-bold uppercase tracking-wider pb-4 ml-1">I am a...</h3>
-<div class="grid grid-cols-3 gap-4">
-<div class="group relative flex flex-col items-center gap-3 p-4 rounded-2xl bg-white border-2 border-primary shadow-sm cursor-pointer transition-all hover:shadow-md">
-<div class="size-11 rounded-full bg-auth-gradient flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[24px]">school</span>
-</div>
-<p class="text-navy text-xs font-bold text-center">Student</p>
-<div class="absolute -top-2 -right-2">
-<div class="bg-primary text-white rounded-full p-0.5 shadow-sm">
-<span class="material-symbols-outlined text-sm font-bold block">check</span>
-</div>
-</div>
-</div>
-<div class="group relative flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/60 border-2 border-transparent hover:border-primary/20 cursor-pointer transition-all">
-<div class="size-11 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[24px]">event</span>
-</div>
-<p class="text-gray-text text-xs font-bold text-center">Organizer</p>
-</div>
-<div class="group relative flex flex-col items-center gap-3 p-4 rounded-2xl bg-white/60 border-2 border-transparent hover:border-primary/20 cursor-pointer transition-all">
-<div class="size-11 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[24px]">admin_panel_settings</span>
-</div>
-<p class="text-gray-text text-xs font-bold text-center">Admin</p>
-</div>
-</div>
-</div>
-<div class="space-y-4">
+<div class="px-8 pt-10 pb-4 text-center">
+    <h1 class="text-navy tracking-tight text-3xl md:text-4xl font-bold leading-tight">
+      Join into the Community
+    </h1>
+    <p class="text-gray-text mt-3 text-sm md:text-base font-medium">
+      Experience the next-gen Event Management System
+    </p>
+  </div>
+
 <div class="space-y-1.5">
 <label class="text-navy text-xs font-bold ml-1">Full Name</label>
-<input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Name" type="text"/>
-</div>
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Email Address</label>
-<input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Email" type="email"/>
-</div>
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Password</label>
-<input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
-</div>
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Conform Your Password</label>
-<input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
-</div>
-</div>
-<button  class="w-full h-14 bg-auth-gradient hover:opacity-90 text-white font-bold rounded-3xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-base" target="s">
-                <a href="Student_Dashboard.html">Submit</a>
-                <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<div class="flex items-center gap-4 py-1">
-<div class="h-px bg-gray-300 grow"></div>
-<span class="text-gray-text text-[10px] font-bold uppercase tracking-[0.2em]">Or Login with</span>
-<div class="h-px bg-gray-300 grow"></div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<button class="flex items-center justify-center gap-2 h-12 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-navy text-sm font-bold transition-all shadow-sm">
-<img alt="Google Logo" class=" h-5" src="data:image/png;base64,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"/>
-                    Google
-                </button>
-<button class="flex items-center justify-center gap-3 h-12 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-navy text-sm font-bold transition-all shadow-sm">
-<img alt="Microsoft Logo" class="w-5 h-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDiQXGMUd-boRykgZmJXW-MG1JD2x8GHwIyw&s">
-                Microsoft</button>
-</div>
-<p class="text-gray-text text-[11px] text-center px-4 leading-relaxed">
-                By signing up, you agree to our 
-                <a class="text-primary font-bold hover:underline" href="#">Terms of Service</a> and 
-                <a class="text-primary font-bold hover:underline" href="#">Privacy Policy</a>.
-            </p>
-</div>
+<input id="fullname" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Name" type="text"/>
 </div>
 
-</body></html>
+<div class="space-y-1.5">
+<label class="text-navy text-xs font-bold ml-1">Email Address</label>
+<input id="email" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Email" type="email"/>
+</div>
+
+<div class="space-y-1.5">
+<label class="text-navy text-xs font-bold ml-1">Password</label>
+<input id="password" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
+</div>
+
+<div class="space-y-1.5">
+<label class="text-navy text-xs font-bold ml-1">Confirm Your Password</label>
+<input id="confirmPassword" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
+</div>
+
+<button id="signupBtn" class="w-full h-14 bg-auth-gradient hover:opacity-90 text-white font-bold rounded-3xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-base">
+Submit
+
+</button>
+<!-- 🔙 Back to Login Link -->
+<div class="text-center mt-4">
+  <a href="Login.html"
+     class="text-primary font-semibold text-sm hover:underline">
+     ← Back to Login
+  </a>
+</div>
+
+</div>
+</div>
+</body>
+</html>

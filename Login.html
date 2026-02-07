@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>EventHub - Login</title>
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="assests/Logo.png">
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -56,6 +55,70 @@ body {
 }
 </style>
 
+<!-- ================= FIREBASE SDK ================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// 👉 REPLACE WITH YOUR OWN FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.handleLogin = async function () {
+
+  const email = document.getElementById("email");
+  const password = document.getElementById("password");
+
+  email.classList.remove("border-red-500");
+  password.classList.remove("border-red-500");
+
+  const oldError = document.getElementById("loginError");
+  if (oldError) oldError.remove();
+
+  if (email.value.trim() === "" || password.value.trim() === "") {
+    email.classList.add("border-red-500");
+    password.classList.add("border-red-500");
+    showError("⚠ Please fill in both fields!");
+    return;
+  }
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    const user = userCredential.user;
+
+    // Successful login → go to dashboard
+    window.location.href = "Student_Dashboard.html";
+
+  } catch (error) {
+    email.classList.add("border-red-500");
+    password.classList.add("border-red-500");
+    showError("❌ Invalid email or password. Try again.");
+  }
+};
+
+function showError(message) {
+  const errorDiv = document.createElement("div");
+  errorDiv.id = "loginError";
+  errorDiv.className = "text-red-600 text-sm text-center font-bold mt-2";
+  errorDiv.innerText = message;
+  document.querySelector(".px-8.pb-10").appendChild(errorDiv);
+}
+</script>
+
 </head>
 
 <body class="min-h-screen flex items-center justify-center p-4 bg-white relative overflow-x-hidden">
@@ -75,21 +138,26 @@ body {
 
     <div class="space-y-1.5">
       <label class="text-navy text-xs font-bold ml-1">Email Address</label>
-      <input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Email" type="email"/>
+      <input id="email"
+        class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm"
+        placeholder="Enter Your Email" type="email"/>
     </div>
 
     <div class="space-y-1.5">
       <label class="text-navy text-xs font-bold ml-1">Password</label>
-      <input class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
+      <input id="password"
+        class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm"
+        placeholder="••••••••" type="password"/>
 
       <div class="flex justify-end">
-        <a href="forgot-password.html" class="text-xs font-bold text-primary hover:underline">
+        <a href="" class="text-xs font-bold text-primary hover:underline">
           Forgot Password?
         </a>
       </div>
     </div>
 
-    <button class="w-full h-14 bg-auth-gradient hover:opacity-90 text-white font-bold rounded-3xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-base">
+    <button onclick="handleLogin()"
+      class="w-full h-14 bg-auth-gradient hover:opacity-90 text-white font-bold rounded-3xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-base">
       Login
       <span class="material-symbols-outlined">arrow_forward</span>
     </button>
@@ -102,7 +170,6 @@ body {
     </p>
 
   </div>
-
 </div>
 
 </body>
