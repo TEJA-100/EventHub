@@ -47,152 +47,200 @@ body {
 .bg-auth-gradient {
   background: var(--primary-gradient);
 }
-.text-auth-gradient {
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+.selected-card {
+  border: 2px solid #3366FF;
+  box-shadow: 0 0 10px rgba(51,102,255,0.3);
 }
 </style>
 
 <!-- =================== FIREBASE SDK =================== -->
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// 👉 PASTE YOUR FIREBASE CONFIG HERE
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+  apiKey: "AIzaSyAdvds3EaIqAOk2JSW8tY7c_xTClj_Sqrk",
+  authDomain: "eventhub-50898.firebaseapp.com",
+  projectId: "eventhub-50898",
+  storageBucket: "eventhub-50898.firebasestorage.app",
+  messagingSenderId: "42079480129",
+  appId: "1:42079480129:web:60886eca0db4e3b1bc59c0"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-document.getElementById("signupBtn").addEventListener("click", async function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-  const name = document.getElementById("fullname");
-  const email = document.getElementById("email");
-  const password = document.getElementById("password");
-  const confirmPassword = document.getElementById("confirmPassword");
+  let selectedRole = "student";
 
-  // remove old red borders
-  name.classList.remove("border-red-500");
-  email.classList.remove("border-red-500");
-  password.classList.remove("border-red-500");
-  confirmPassword.classList.remove("border-red-500");
+  document.querySelectorAll(".role-card").forEach(card => {
+    card.addEventListener("click", function () {
 
-  const oldError = document.getElementById("signupError");
-  if (oldError) oldError.remove();
+      document.querySelectorAll(".role-card")
+        .forEach(c => c.classList.remove("selected-card"));
 
-  if (!name.value || !email.value || !password.value || !confirmPassword.value) {
-    showError("⚠ Please fill all fields!");
-    name.classList.add("border-red-500");
-    email.classList.add("border-red-500");
-    password.classList.add("border-red-500");
-    confirmPassword.classList.add("border-red-500");
-    return;
-  }
-
-  if (password.value !== confirmPassword.value) {
-    showError("❌ Passwords do not match!");
-    password.classList.add("border-red-500");
-    confirmPassword.classList.add("border-red-500");
-    return;
-  }
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    const user = userCredential.user;
-
-    await setDoc(doc(db, "users", user.uid), {
-      name: name.value,
-      email: email.value,
-      role: "student",
-      createdAt: new Date()
+      this.classList.add("selected-card");
+      selectedRole = this.getAttribute("data-role");
     });
+  });
 
-    window.location.href = "Student_Dashboard.html";
+  const signupBtn = document.getElementById("signupBtn");
 
-  } catch (error) {
-    showError("❌ " + error.message);
-    email.classList.add("border-red-500");
-  }
+  signupBtn.addEventListener("click", async function (event) {
+
+    event.preventDefault();  // ⬅️ CRITICAL FIX
+
+    const name = document.getElementById("fullname").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (!name || !email || !password || !confirmPassword) {
+      alert("⚠ Please fill all fields!");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("❌ Passwords do not match!");
+      return;
+    }
+
+    signupBtn.disabled = true;
+    signupBtn.innerText = "Please wait...";
+
+
+    console.log("Attempting signup for:", email);
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      console.log("User created:", user.uid);
+
+      await setDoc(doc(db, "users", user.uid), {
+        name: name,
+        email: email,
+        role: selectedRole,
+        createdAt: new Date()
+      });
+
+       // Show success popup
+           document.getElementById("successModal").classList.remove("hidden");
+
+// ONE consistent redirect path for BOTH cases
+        let redirectTimer = setTimeout(() => {
+            window.location.href = "/Login.html";
+          }, 8000);
+
+          document.getElementById("goToLoginBtn").onclick = function () {
+           clearTimeout(redirectTimer);
+           window.location.href = "/Login.html";
+          };
+
+
+
+
+    } catch (error) {
+      console.error("Signup Error:", error);
+
+      alert("❌ Signup Failed:\n" + error.code + "\n" + error.message);
+
+      signupBtn.disabled = false;
+      signupBtn.innerText = "Create Account";
+    }
+  });
+
 });
 
-function showError(msg) {
-  const errorDiv = document.createElement("div");
-  errorDiv.id = "signupError";
-  errorDiv.className = "text-red-600 text-sm text-center font-bold mt-4";
-  errorDiv.innerText = msg;
-  document.querySelector(".px-8.pb-10").appendChild(errorDiv);
-}
 </script>
+
+
 </head>
 
-<body class="min-h-screen flex items-center justify-center p-4 bg-white relative overflow-x-hidden">
+<body class="min-h-screen flex items-center justify-center p-4 bg-white">
 
-<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-teal/5 rounded-full blur-3xl"></div>
+<div class="w-full max-w-[500px] bg-white rounded-3xl shadow-xl p-6">
+
+<h1 class="text-center text-2xl font-bold mb-3 text-primary">Create Account</h1>
+
+<p class="text-center text-dark mb-4">Select Your Role</p>
+
+<!-- ===== ROLE CARDS IN ONE LINE ===== -->
+ 
+<div class="flex justify-between gap-4 mb-6">
+
+<div class="role-card border rounded-2xl p-4 text-center cursor-pointer w-1/3" data-role="student">
+<span class="material-symbols-outlined text-4xl text-primary">school</span>
+<p class="font-bold mt-2">Student</p>
 </div>
 
-<div class="z-10 w-full max-w-[500px] md:max-w-[480px] bg-gray-bg lg:bg-white/40 lg:backdrop-blur-xl rounded-[2rem] shadow-[0_20px_50px_rgba(10,31,68,0.1)] overflow-hidden border border-white/50">
-
-<div class="px-8 pb-10 space-y-6">
-<div class="px-8 pt-10 pb-4 text-center">
-    <h1 class="text-navy tracking-tight text-3xl md:text-4xl font-bold leading-tight">
-      Join into the Community
-    </h1>
-    <p class="text-gray-text mt-3 text-sm md:text-base font-medium">
-      Experience the next-gen Event Management System
-    </p>
-  </div>
-
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Full Name</label>
-<input id="fullname" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Name" type="text"/>
+<div class="role-card border rounded-2xl p-4 text-center cursor-pointer w-1/3" data-role="organizer">
+<span class="material-symbols-outlined text-4xl text-primary">business</span>
+<p class="font-bold mt-2">Organizer</p>
 </div>
 
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Email Address</label>
-<input id="email" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="Enter Your Email" type="email"/>
+<div class="role-card border rounded-2xl p-4 text-center cursor-pointer w-1/3" data-role="admin">
+<span class="material-symbols-outlined text-4xl text-primary">person</span>
+<p class="font-bold mt-2">Admin</p>
 </div>
 
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Password</label>
-<input id="password" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
 </div>
 
-<div class="space-y-1.5">
-<label class="text-navy text-xs font-bold ml-1">Confirm Your Password</label>
-<input id="confirmPassword" class="w-full h-12 px-5 rounded-xl bg-white border border-gray-200 text-navy text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-gray-400 shadow-sm" placeholder="••••••••" type="password"/>
-</div>
+<!-- ===== INPUT FIELDS ===== -->
+<input id="fullname" placeholder="Full Name" class="w-full p-3 border rounded mb-3"/>
 
-<button id="signupBtn" class="w-full h-14 bg-auth-gradient hover:opacity-90 text-white font-bold rounded-3xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-base">
-Submit
+<input id="email" type="email" placeholder="Email" class="w-full p-3 border rounded mb-3"/>
 
+<input id="password" type="password" placeholder="Password" class="w-full p-3 border rounded mb-3"/>
+
+<input id="confirmPassword" type="password" placeholder="Confirm Password" class="w-full p-3 border rounded mb-3"/>
+
+<button id="signupBtn"
+class="w-full bg-auth-gradient text-white p-3 rounded-xl font-bold">
+Create Account
 </button>
-<!-- 🔙 Back to Login Link -->
+
 <div class="text-center mt-4">
-  <a href="Login.html"
-     class="text-primary font-semibold text-sm hover:underline">
-     ← Back to Login
-  </a>
+<a href="Login.html" class="text-primary">← Back to Login</a>
 </div>
 
 </div>
+
+
+<!-- ========== SUCCESS POPUP MODAL ========== -->
+<div id="successModal"
+class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+
+  <div class="bg-white rounded-2xl p-6 text-center w-80 shadow-xl">
+
+    <span class="material-symbols-outlined text-green-500 text-5xl mb-3">
+      check_circle
+    </span>
+
+    <h2 class="text-xl font-bold mb-2">Account Created!</h2>
+    <p class="text-gray-600 mb-4">
+      Your account was created successfully.<br>
+      Redirecting to login...
+    </p>
+
+
+    <button id="goToLoginBtn"
+      class="bg-auth-gradient text-white px-6 py-2 rounded-xl font-bold">
+      Go to Login
+    </button>
+
+  </div>
 </div>
+
+
 </body>
 </html>
